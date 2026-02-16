@@ -1,0 +1,18 @@
+add_executable( render_to_null
+  render_to_null.cpp
+)
+
+target_link_libraries(
+  render_to_null
+  tvs_common
+  Boost::program_options
+  Boost::system
+  ${pkgcfg_lib_Vulkan_vulkan}
+)
+
+target_compile_definitions( render_to_null PRIVATE -DCMAKE_CURRENT_BINARY_DIR="${CMAKE_CURRENT_BINARY_DIR}" )
+target_compile_definitions( render_to_null PRIVATE -DCMAKE_CURRENT_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}" )
+
+add_shader( render_to_null shader.vert )
+add_shader( render_to_null shader.frag )
+
